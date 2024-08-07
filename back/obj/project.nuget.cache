@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JJ3abdcZXso=",
+  "dgSpecHash": "dMrd9FsDfyM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Chawki\\Desktop\\U\\back\\back.csproj",
+  "projectFilePath": "F:\\U\\back\\back.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Chawki\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Chawki\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

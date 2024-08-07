@@ -4528,11 +4528,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Chawki\\Desktop\\U\\back\\back.csproj",
+      "projectUniqueName": "F:\\U\\back\\back.csproj",
       "projectName": "back",
-      "projectPath": "C:\\Users\\Chawki\\Desktop\\U\\back\\back.csproj",
+      "projectPath": "F:\\U\\back\\back.csproj",
       "packagesPath": "C:\\Users\\Chawki\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Chawki\\Desktop\\U\\back\\obj\\",
+      "outputPath": "F:\\U\\back\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Chawki\\AppData\\Roaming\\NuGet\\NuGet.Config",

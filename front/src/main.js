@@ -3,7 +3,7 @@ import App from './App.vue'
 import axios  from 'axios'
 
 
-axios.defaults.baseURL = "https://backuser.ambitiousfield-d44c9f05.northeurope.azurecontainerapps.io";
+axios.defaults.baseURL = "http://localhost:5000";
 
 
 createApp(App).mount('#app')
