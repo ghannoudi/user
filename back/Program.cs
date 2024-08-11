@@ -3,6 +3,7 @@ using back.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configure CORS to allow all origins, headers, and methods
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins",
@@ -14,21 +15,17 @@ builder.Services.AddCors(options =>
         });
 });
 
-
 builder.Services.AddDbContext<UserContext>(options =>
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("UserContext")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("UserContext")));
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-
-//creating database 
+// Create database if it doesn't exist
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<UserContext>();
@@ -44,10 +41,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Apply CORS policy
+app.UseCors("AllowAllOrigins");
+
+// Apply authorization middleware
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.UseCors("AllowAllOrigins");
 
 app.Run();
