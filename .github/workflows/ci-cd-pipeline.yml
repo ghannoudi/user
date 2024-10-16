@@ -29,7 +29,7 @@ jobs:
 
       - name: Build and push frontend image
         run: |
-          docker build -t chawkighannoudi/front:latest ./front
+          docker build -t chawkighannoudi/front:2 ./front
           docker push chawkighannoudi/front:2
 
   deploy:
@@ -57,7 +57,7 @@ jobs:
 
           az webapp config container set \
             --resource-group user \
-            --name front\
+            --name front \
             --docker-custom-image-name chawkighannoudi/front:2 \
             --docker-registry-server-url https://index.docker.io/v1/ \
             --docker-registry-server-user ${{ secrets.DOCKER_USERNAME }} \
