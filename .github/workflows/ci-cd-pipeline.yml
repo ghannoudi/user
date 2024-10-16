@@ -45,20 +45,10 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Deploy to Azure (two-container web app)
+      - name: Deploy backend container to Azure
         run: |
-          az webapp config container set \
-            --resource-group user\
-            --name back \
-            --docker-custom-image-name chawkighannoudi/back:2 \
-            --docker-registry-server-url https://index.docker.io/v1/ \
-            --docker-registry-server-user ${{ secrets.DOCKER_USERNAME }} \
-            --docker-registry-server-password ${{ secrets.DOCKER_PASSWORD }}
+          az containerapp update --resource-group user --name back --image chawkighannoudi/back:2
 
-          az webapp config container set \
-            --resource-group user \
-            --name front \
-            --docker-custom-image-name chawkighannoudi/front:2 \
-            --docker-registry-server-url https://index.docker.io/v1/ \
-            --docker-registry-server-user ${{ secrets.DOCKER_USERNAME }} \
-            --docker-registry-server-password ${{ secrets.DOCKER_PASSWORD }}
+      - name: Deploy frontend container to Azure
+        run: |
+          az containerapp update --resource-group user --name front --image chawkighannoudi/front:2
