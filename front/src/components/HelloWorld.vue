@@ -81,7 +81,7 @@ export default {
 
 <template>
   <div class="mx-auto p-2" style="width: 800px;">
-    <h1>hello CRUD User</h1>
+    <h1>CRUD User !!</h1>
     <table class="table table-striped">
       <tr>
         <th>First Name</th>
