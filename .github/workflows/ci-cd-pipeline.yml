@@ -43,7 +43,7 @@ jobs:
                 run: |
                   echo "Testing application health..."
                   # Replace the following command with the actual health check command
-                  curl -f https://your-backend-url/health || exit 1
+                  curl -f https://back.agreeablewater-7b00b80b.northeurope.azurecontainerapps.io/health || exit 1
   deploy:
     runs-on: ubuntu-latest
     needs: build
