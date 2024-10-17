@@ -31,7 +31,28 @@ jobs:
         run: |
           docker build -t chawkighannoudi/front:2 ./front
           docker push chawkighannoudi/front:2
+  
 
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+        
+    steps:
+              - name: Run backend container
+                run: docker run -d -p 5000:80 chawkighannoudi/back:2
+        
+              - name: Check if backend is healthy
+                run: |
+                  sleep 5
+                  curl --fail http://localhost:5000/health || exit 1
+        
+              - name: Run frontend container
+                run: docker run -d -p 8080:80 chawkighannoudi/front:2
+        
+              - name: Check if frontend is running
+                run: |
+                  sleep 5
+                  curl --fail http://localhost:8080 || exit 1
   deploy:
     runs-on: ubuntu-latest
     needs: build
