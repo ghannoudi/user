@@ -48,6 +48,5 @@ app.UseCors("AllowAllOrigins");
 app.UseAuthorization();
 
 app.MapControllers();
-app.MapGet("/health", () => Results.Ok("App is running successfully"));
 
 app.Run();

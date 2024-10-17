@@ -1,23 +1,19 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import HelloWorld from '../components/HelloWorld.vue';
-import HealthCheck from '../components/HealthCheck.vue'; // Import the health check component
+<template>
+  <HelloWorld />
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: HelloWorld,
-  },
-  {
-    path: '/health',
-    name: 'HealthCheck',
-    component: HealthCheck, // Add the health check route
-  },
-];
+</template>
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
+<script>
+import HelloWorld from "./components/HelloWorld.vue";
 
-export default router;
+export default {
+  name: 'App',
+  components: {
+    HelloWorld
+  }
+}
+</script>
+
+<style>
+
+</style>
