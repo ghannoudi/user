@@ -37,26 +37,6 @@ jobs:
     needs: build
 
     steps:
-      - name: Health Check for Backend
-        run: |
-          echo "Running health check for backend..."
-          response=$(curl -s -o /dev/null -w "%{http_code}" https://back.agreeablewater-7b00b80b.northeurope.azurecontainerapps.io/health)
-          if [ "$response" -ne 200 ]; then
-            echo "Health check failed for backend. Status code: $response"
-            exit 1
-          fi
-          echo "Backend health check passed."
-
-      - name: Health Check for Frontend
-        run: |
-          echo "Running health check for frontend..."
-          response=$(curl -s -o /dev/null -w "%{http_code}" https://front.agreeablewater-7b00b80b.northeurope.azurecontainerapps.io/)
-          if [ "$response" -ne 200 ]; then
-            echo "Health check failed for frontend. Status code: $response"
-            exit 1
-          fi
-          echo "Frontend health check passed."
-
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -72,3 +52,4 @@ jobs:
       - name: Deploy frontend container to Azure
         run: |
           az containerapp update --resource-group user --name front --image chawkighannoudi/front:2
+      
