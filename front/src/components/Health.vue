@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 <template>
     <div>
       <h2>Backend Health Check</h2>
