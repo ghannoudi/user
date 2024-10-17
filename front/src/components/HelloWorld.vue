@@ -1,5 +1,53 @@
+<template>
+  <div class="container mx-auto p-2">
+    <h1 class="title">CRUD User</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="user in users" :key="user.id">
+          <td>{{ user.nom }}</td>
+          <td>{{ user.prenom }}</td>
+          <td>
+            <button class="btn btn-primary" @click="updateUser(user)">Modifier</button>
+            <button class="btn btn-danger" @click="delUser(user.id)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" class="btn btn-success" @click="addUser()">Add User</button>
+
+    <!-- Modal -->
+    <div v-if="showModal" class="modal-overlay">
+      <div class="modal-container">
+        <h3 v-if="modalMode === 'add'">Add User</h3>
+        <h3 v-if="modalMode === 'update'">Update User</h3>
+        <h3 v-if="modalMode === 'delete'">Delete User</h3>
+
+        <div v-if="modalMode !== 'delete'">
+          <input v-model="modalData.nom" placeholder="First Name" class="form-control" />
+          <input v-model="modalData.prenom" placeholder="Last Name" class="form-control" />
+        </div>
+
+        <div v-if="modalMode === 'delete'">
+          <p>Are you sure you want to delete this user?</p>
+        </div>
+
+        <button class="btn btn-primary" @click="confirmSave" v-if="modalMode !== 'delete'">Save</button>
+        <button class="btn btn-danger" @click="confirmDelete" v-if="modalMode === 'delete'">Delete</button>
+        <button class="btn btn-secondary" @click="closeModal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script>
-  import axios from 'axios';
+import axios from 'axios';
 
 export default {
   name: 'HelloWorld',
@@ -79,60 +127,20 @@ export default {
 }
 </script>
 
-<template>
-  <div class="mx-auto p-2" style="width: 800px;">
-    <h1>CRUD User !! </h1>
-    <table class="table table-striped">
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th></th>
-        <th></th>
-      </tr>
-      <tr v-for="user in users" :key="user.id">
-        <td>{{ user.nom }}</td>
-        <td>{{ user.prenom }}</td>
-        <td>
-          <button class="btn btn-primary" @click="updateUser(user)">Modifier</button>
-        </td>
-        <td>
-          <button class="btn btn-danger" @click="delUser(user.id)">Supprimer</button>
-        </td>
-      </tr>
-    </table>
-    <button type="button" class="btn btn-success" @click="addUser()">Add User</button>
-
-    <!-- Modal -->
-    <div v-if="showModal" class="modal-overlay">
-      <div class="modal-container">
-        <h3 v-if="modalMode === 'add'">Add User</h3>
-        <h3 v-if="modalMode === 'update'">Update User</h3>
-        <h3 v-if="modalMode === 'delete'">Delete User</h3>
-
-        <div v-if="modalMode !== 'delete'">
-          <input v-model="modalData.nom" placeholder="First Name" class="form-control" />
-          <input v-model="modalData.prenom" placeholder="Last Name" class="form-control" />
-        </div>
-
-        <div v-if="modalMode === 'delete'">
-          <p>Are you sure you want to delete this user?</p>
-        </div>
-
-        <button class="btn btn-primary" @click="confirmSave" v-if="modalMode !== 'delete'">Save</button>
-        <button class="btn btn-danger" @click="confirmDelete" v-if="modalMode === 'delete'">Delete</button>
-        <button class="btn btn-secondary" @click="closeModal">Cancel</button>
-      </div>
-    </div>
-  </div>
-</template>
-
 <style>
-div {
-  margin-top: 100px;
+.container {
+  margin-top: 20px;
+  padding: 10px;
 }
 
-h1 {
-  margin-bottom: 50px;
+.title {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .modal-overlay {
@@ -145,6 +153,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .modal-container {
@@ -152,7 +161,8 @@ h1 {
   padding: 20px;
   border-radius: 5px;
   text-align: center;
-  width: 300px;
+  width: 90%; /* Changed to make it responsive */
+  max-width: 400px; /* Limit the maximum width */
 }
 
 .form-control {
@@ -160,5 +170,16 @@ h1 {
   margin-bottom: 15px;
   padding: 10px;
   box-sizing: border-box;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .modal-container {
+    width: 95%; /* Make the modal take more width on small screens */
+  }
 }
 </style>
