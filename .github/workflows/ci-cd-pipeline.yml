@@ -52,3 +52,4 @@ jobs:
       - name: Deploy frontend container to Azure
         run: |
           az containerapp update --resource-group user --name front --image chawkighannoudi/front:2
+      
