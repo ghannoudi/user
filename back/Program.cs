@@ -15,12 +15,8 @@ builder.Services.AddCors(options =>
         });
 });
 
-// Add DbContext for SQL Server
 builder.Services.AddDbContext<UserContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("UserContext")));
-
-// Add health check services
-builder.Services.AddHealthChecks();
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -50,9 +46,6 @@ app.UseCors("AllowAllOrigins");
 
 // Apply authorization middleware
 app.UseAuthorization();
-
-// Map the health check endpoint
-app.MapHealthChecks("/health");
 
 app.MapControllers();
 
