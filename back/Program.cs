@@ -24,6 +24,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
+builder.Services.AddHealthChecks();
+
 
 var app = builder.Build();
 
@@ -41,7 +43,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-builder.Services.AddHealthChecks();
+
 
 //HealthCheck Middleware
 app.MapHealthChecks("/api/health");
