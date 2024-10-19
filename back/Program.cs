@@ -23,6 +23,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
 var app = builder.Build();
 
 // Create database if it doesn't exist
@@ -39,6 +41,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+builder.Services.AddHealthChecks();
+
+//HealthCheck Middleware
+app.MapHealthChecks("/api/health");
+
 app.UseHttpsRedirection();
 
 // Apply CORS policy
@@ -48,7 +55,7 @@ app.UseCors("AllowAllOrigins");
 app.UseAuthorization();
 
 app.MapControllers();
-app.MapGet("/health", () => Results.Ok("App is running successfully"));
+
 
 
 app.Run();
