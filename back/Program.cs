@@ -41,10 +41,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//builder.Services.AddHealthChecks();
+builder.Services.AddHealthChecks();
 
 //HealthCheck Middleware
-//app.MapHealthChecks("/api/health");
+app.MapHealthChecks("/api/health");
 
 app.UseHttpsRedirection();
 
