@@ -411,3 +411,10 @@ F:\userF\user\back\obj\Debug\net8.0\refint\back.dll
 F:\userF\user\back\obj\Debug\net8.0\back.pdb
 F:\userF\user\back\obj\Debug\net8.0\back.genruntimeconfig.cache
 F:\userF\user\back\obj\Debug\net8.0\ref\back.dll
+F:\userF\user\back\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+F:\userF\user\back\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+F:\userF\user\back\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.HealthChecks.dll
+F:\userF\user\back\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
+F:\userF\user\back\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
+F:\userF\user\back\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+F:\userF\user\back\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
