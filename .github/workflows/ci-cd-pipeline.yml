@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
+      - test
 
 jobs:
   build:
@@ -46,13 +46,17 @@ jobs:
       - name: Test Backend Health
         run: |
           echo "Testing backend health..."
-          curl -f https://your-backend-urlhttps://back.agreeablewater-7b00b80b.northeurope.azurecontainerapps.io/api/health || exit 1
+          curl -f https://back.agreeablewater-7b00b80b.northeurope.azurecontainerapps.io//api/health || exit 1
 
   rollback:
     runs-on: ubuntu-latest
     if: failure()
     needs: test
     steps:
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Rollback to previous version
         run: |
           echo "Rolling back to previous deployment..."
