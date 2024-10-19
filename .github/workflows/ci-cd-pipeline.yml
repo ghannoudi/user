@@ -46,9 +46,9 @@ jobs:
       - name: Test Backend Health
         run: |
           echo "Testing backend health..."
-          curl -f https://back.agreeablewater-7b00b80b.northeurope.azurecontainerapps.io/api/Users || exit 1
+          curl -f https://back.agreeablewater-7b00b80b.northeurope.azurecontainerapps.io/api/health || exit 1
 
-      - name: Test backend Health
+      - name: Test front Health
         run: |
           echo "Testing frontend health..."
           curl -f https://front.agreeablewater-7b00b80b.northeurope.azurecontainerapps.io/ || exit 1
