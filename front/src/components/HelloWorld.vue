@@ -15,8 +15,8 @@
           <td>{{ user.prenom }}</td>
           <td>
             <button class="btn btn-primary" @click="updateUser(user)">Modifier</button>
-            <button class="btn btn-danger" @click="delUser(user.id)">Supprimer</button>
           </td>
+          <td><button class="btn btn-danger" @click="delUser(user.id)">Supprimer</button></td>
         </tr>
       </tbody>
     </table>
