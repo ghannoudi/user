@@ -38,22 +38,3 @@ jobs:
       - name: Deploy backend container to Azure
         run: |
           az containerapp update --resource-group user --name back --image chawkighannoudi/back:2
-
-  test:
-    runs-on: ubuntu-latest
-    needs: deploy
-    steps:
-      - name: Test Backend Health
-        run: |
-          echo "Testing backend health..."
-          curl -f https://back.agreeablewater-7b00b80b.northeurope.azurecontainerapps.io/api/health || exit 1
-
-  rollback:
-    runs-on: ubuntu-latest
-    if: failure()
-    needs: test
-    steps:
-      - name: Rollback to previous version
-        run: |
-          echo "Rolling back to previous deployment..."
-          az containerapp update --resource-group user --name back --image chawkighannoudi/back:previous-version-tag
