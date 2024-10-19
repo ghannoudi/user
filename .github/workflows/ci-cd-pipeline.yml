@@ -34,15 +34,25 @@ jobs:
     runs-on: ubuntu-latest
     needs: build # Test depends on build
     steps:
+      - name: Start backend container
+        run: |
+          docker run -d -p 7169:80 --name backend chawkighannoudi/back:2
+          
       - name: Test Backend Health
         run: |
           echo "Testing backend health..."
-          curl -f https://localhost:7169/api/health || exit 1
-          
-      # - name: Test Frontend Health
+          sleep 10 # Donnez un peu de temps pour que le conteneur démarre
+          curl -f http://localhost:7169/api/health || exit 1
+
+      # - name: Start frontend container
       #   run: |
-      #     echo "Testing frontend health..."
-      #     curl -f https://your-frontend-url/ || exit 1 # Remplacez par l'URL de votre frontend
+      #     docker run -d -p 8080:80 --name frontend chawkighannoudi/front:2
+          
+      # # - name: Test Frontend Health
+      # #   run: |
+      # #     echo "Testing frontend health..."
+      # #     sleep 10 # Donnez un peu de temps pour que le conteneur démarre
+      # #     curl -f http://localhost:8080 || exit 1
 
   push_and_deploy:
     runs-on: ubuntu-latest
